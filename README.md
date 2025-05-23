@@ -4,8 +4,8 @@ A command-line tool for compressing, encrypting, and processing text files.
 
 ## Features
 
-- Run-Length Encoding (RLE) compression
-- XOR and Caesar cipher encryption
+- Huffman coding for compression
+- XOR cipher encryption
 - Keyword search in decrypted text
 - Line sorting
 - Command-line interface with various modes
@@ -31,38 +31,51 @@ make clean
 
 ## Usage
 
+All commands should be run from the root directory of the project.
+
 ```bash
-# Compress a file
-./file_processor --compress -i input.txt -o output.rle
+# Compress a file (output will be a .huff file)
+./bin/file_processor --compress -i input.txt -o output.huff
 
 # Decompress a file
-./file_processor --decompress -i input.rle -o output.txt
+./bin/file_processor --decompress -i output.huff -o output.txt
 
 # Encrypt a file
-./file_processor --encrypt -i input.txt -o output.enc -k "secretkey"
+./bin/file_processor --encrypt -i input.txt -o output.enc -k "secretkey"
 
 # Decrypt a file
-./file_processor --decrypt -i input.enc -o output.txt -k "secretkey"
+./bin/file_processor --decrypt -i output.enc -o output.txt -k "secretkey"
 
 # Search in a file
-./file_processor --search -i input.txt -s "keyword"
+./bin/file_processor --search -i input.txt -s "keyword"
 
 # Sort lines in a file
-./file_processor --sort -i input.txt -o output.txt
+./bin/file_processor --sort -i input.txt -o output_sorted.txt
 
 # Show help
-./file_processor --help
+./bin/file_processor --help
 ```
 
 ## Project Structure
 
-- `main.c` - Main program entry point
-- `cli.c/h` - Command-line interface handling
-- `compress.c/h` - RLE compression implementation
-- `encrypt.c/h` - Encryption algorithms
-- `io.c/h` - File I/O operations
-- `search.c/h` - Keyword search functionality
-- `sort.c/h` - Line sorting implementation
+- `Makefile` - Manages the build process.
+- `bin/` - Directory for the compiled executable (`file_processor`).
+- `include/` - Directory for header files (`.h`).
+  - `cli.h`
+  - `compress.h`
+  - `encrypt.h`
+  - `io.h`
+  - `search.h`
+  - `sort.h`
+- `src/` - Directory for C source files (`.c`).
+  - `main.c` - Main program entry point.
+  - `cli.c` - Command-line interface handling.
+  - `compress.c` - Huffman coding implementation.
+  - `encrypt.c` - XOR encryption algorithm.
+  - `io.c` - File I/O operations.
+  - `search.c` - Keyword search functionality.
+  - `sort.c` - Line sorting implementation.
+- `obj/` - Directory for compiled object files (`.o`), created during build.
 
 ## License
 

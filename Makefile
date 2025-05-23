@@ -1,13 +1,17 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -std=c99
+CFLAGS = -Wall -Wextra -std=c99 -I./include
 DEBUG_CFLAGS = -DDEBUG
 LDFLAGS = 
 
-SRC = main.c cli.c compress.c encrypt.c io.c search.c sort.c
-OBJ = $(SRC:.c=.o)
-HEADERS = cli.h compress.h encrypt.h io.h search.h sort.h
+SRC_DIR = src
+BIN_DIR = bin
+INCLUDE_DIR = include
 
-TARGET = file_processor
+SRC = $(wildcard $(SRC_DIR)/*.c)
+OBJ = $(SRC:$(SRC_DIR)/%.c=%.o)
+HEADERS = $(wildcard $(INCLUDE_DIR)/*.h)
+
+TARGET = $(BIN_DIR)/file_processor
 
 .PHONY: all debug clean test
 
@@ -17,13 +21,14 @@ debug: CFLAGS += $(DEBUG_CFLAGS)
 debug: $(TARGET)
 
 $(TARGET): $(OBJ)
+	@mkdir -p $(BIN_DIR)
 	$(CC) $(LDFLAGS) -o $@ $^
 
-%.o: %.c $(HEADERS)
+%.o: $(SRC_DIR)/%.c $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJ) $(TARGET)
 
 test: $(TARGET)
-	./$(TARGET) --help 
+	$(TARGET) --help 

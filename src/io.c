@@ -60,5 +60,21 @@ void handle_error(const char* message) {
 }
 
 void handle_memory_error(void) {
-    handle_error("Memory allocation failed");
+    fprintf(stderr, "Memory allocation error\n");
+    exit(EXIT_FAILURE);
+}
+
+// Custom string duplication function for C99 compatibility
+char* my_strdup(const char* s) {
+    if (s == NULL) {
+        return NULL;
+    }
+    size_t len = strlen(s) + 1;
+    char* new_s = malloc(len);
+    if (new_s == NULL) {
+        handle_memory_error();
+        return NULL;
+    }
+    memcpy(new_s, s, len);
+    return new_s;
 } 

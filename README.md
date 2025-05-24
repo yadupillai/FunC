@@ -1,82 +1,54 @@
+Application Developed by
+1. Yadu Pillai (24966285)
+2. Mohammad Karimi (24733370)
+3. Nek Sultan (25430341)
+4. Mario Apostolov
+
 # File Processor - Data Compression and Encryption Tool
 
-A command-line tool for compressing, encrypting, and processing text files.
+This application is a text file compression, encryption, and processing tool that is used through the command-line interface.
 
 ## Features
 
-- Huffman coding for compression
-- XOR cipher encryption
-- Keyword search in decrypted text
+- Huffman code for compression
+- The XOR cipher encryption
+- Keyword searching in decrypted texts
 - Line sorting
-- Command-line interface with various modes
-- Debug mode support
 
-## Build Instructions
+Instructions for building
 
-### Prerequisites
+### Requirements
 - GCC compiler
-- Make
+- Build
 
 ### Building
-```bash
-# Build release version
-make
+Make
 
-# Build debug version
-make debug
 
-# Clean build files
-make clean
-```
+# Clean Build Files
+clean up
+
 
 ## Usage
+All commands need to be run from the project root directory.
 
-All commands should be run from the root directory of the project.
+# Show help (Lists all the possuble actions)
+./bin/file_processor --help
 
-```bash
-# Compress a file (output will be a .huff file)
+Compress a file (output will be a .huff file)
 ./bin/file_processor --compress -i input.txt -o output.huff
 
-# Decompress a file
+# Decompressive a file
 ./bin/file_processor --decompress -i output.huff -o output.txt
 
-# Encrypt a file
-./bin/file_processor --encrypt -i input.txt -o output.enc -k "secretkey"
+# Encrypt a File
+./bin/file_processor --encrypt -i input.txt -o output.enc -k "EnterYourKey"
 
 # Decrypt a file
-./bin/file_processor --decrypt -i output.enc -o output.txt -k "secretkey"
+./bin/file_processor --decrypt -i output.enc -o output.txt -k "EnterYourKey"
 
 # Search in a file
 ./bin/file_processor --search -i input.txt -s "keyword"
 
 # Sort lines in a file
 ./bin/file_processor --sort -i input.txt -o output_sorted.txt
-
-# Show help
-./bin/file_processor --help
-```
-
-## Project Structure
-
-- `Makefile` - Manages the build process.
-- `bin/` - Directory for the compiled executable (`file_processor`).
-- `include/` - Directory for header files (`.h`).
-  - `cli.h`
-  - `compress.h`
-  - `encrypt.h`
-  - `io.h`
-  - `search.h`
-  - `sort.h`
-- `src/` - Directory for C source files (`.c`).
-  - `main.c` - Main program entry point.
-  - `cli.c` - Command-line interface handling.
-  - `compress.c` - Huffman coding implementation.
-  - `encrypt.c` - XOR encryption algorithm.
-  - `io.c` - File I/O operations.
-  - `search.c` - Keyword search functionality.
-  - `sort.c` - Line sorting implementation.
-- `obj/` - Directory for compiled object files (`.o`), created during build.
-
-## License
-
-This project is licensed under the MIT License. 

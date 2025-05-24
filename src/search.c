@@ -58,7 +58,7 @@ SearchResult* search_text(const char* text, const char* keyword) {
 
     // Check last line
     if (*line_start != '\0') {
-        char* line = strdup(line_start);
+        char* line = my_strdup(line_start);
         if (!line) {
             handle_memory_error();
             free_search_results(head);

@@ -22,7 +22,6 @@ Options* parse_cli(int argc, char** argv) {
     opts->output_file = NULL;
     opts->key = NULL;
     opts->search_term = NULL;
-    opts->debug_mode = 0;
 
     // Parse arguments
     for (int i = 1; i < argc; i++) {
@@ -40,16 +39,14 @@ Options* parse_cli(int argc, char** argv) {
             opts->mode = MODE_SORT;
         } else if (strcmp(argv[i], "--help") == 0) {
             opts->mode = MODE_HELP;
-        } else if (strcmp(argv[i], "--debug") == 0) {
-            opts->debug_mode = 1;
         } else if (strcmp(argv[i], "-i") == 0 && i + 1 < argc) {
-            opts->input_file = strdup(argv[++i]);
+            opts->input_file = my_strdup(argv[++i]);
         } else if (strcmp(argv[i], "-o") == 0 && i + 1 < argc) {
-            opts->output_file = strdup(argv[++i]);
+            opts->output_file = my_strdup(argv[++i]);
         } else if (strcmp(argv[i], "-k") == 0 && i + 1 < argc) {
-            opts->key = strdup(argv[++i]);
+            opts->key = my_strdup(argv[++i]);
         } else if (strcmp(argv[i], "-s") == 0 && i + 1 < argc) {
-            opts->search_term = strdup(argv[++i]);
+            opts->search_term = my_strdup(argv[++i]);
         }
     }
 
@@ -103,13 +100,12 @@ void print_help(void) {
     printf("  --search        Search in input file\n");
     printf("  --sort          Sort lines in input file\n");
     printf("  --help          Show this help message\n");
-    printf("  --debug         Enable debug mode\n");
     printf("  -i <file>       Input file\n");
     printf("  -o <file>       Output file\n");
     printf("  -k <key>        Encryption key\n");
     printf("  -s <term>       Search term\n\n");
     printf("Examples:\n");
-    printf("  file_processor --compress -i input.txt -o output.rle\n");
-    printf("  file_processor --encrypt -i input.txt -o output.enc -k secret\n");
-    printf("  file_processor --search -i input.txt -s keyword\n");
+    printf("  ./bin/file_processor --compress -i input.txt -o output.huff\n");
+    printf("  ./bin/file_processor --encrypt -i input.txt -o output.enc -k secret\n");
+    printf("  ./bin/file_processor --search -i input.txt -s keyword\n");
 } 

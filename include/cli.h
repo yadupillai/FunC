@@ -24,7 +24,6 @@ typedef struct {
     char* output_file;
     char* key;
     char* search_term;
-    int debug_mode;
 } Options;
 
 // Function declarations

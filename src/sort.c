@@ -57,7 +57,7 @@ LineArray* split_into_lines(const char* text) {
 
     // Add last line if not empty
     if (*line_start != '\0') {
-        lines->lines[lines->count] = strdup(line_start);
+        lines->lines[lines->count] = my_strdup(line_start);
         if (!lines->lines[lines->count]) {
             handle_memory_error();
             free_line_array(lines);

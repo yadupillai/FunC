@@ -56,10 +56,10 @@ void swap_min_heap_nodes(MinHeapNode** a, MinHeapNode** b) {
     *b = t;
 }
 
-void min_heapify(MinHeap* min_heap, int idx) {
-    int smallest = idx;
-    int left = 2 * idx + 1;
-    int right = 2 * idx + 2;
+void min_heapify(MinHeap* min_heap, unsigned int idx) {
+    unsigned int smallest = idx;
+    unsigned int left = 2 * idx + 1;
+    unsigned int right = 2 * idx + 2;
 
     if (left < min_heap->size && min_heap->array[left]->frequency < min_heap->array[smallest]->frequency)
         smallest = left;
@@ -291,7 +291,7 @@ char* huffman_compress(const char* input, size_t input_len, size_t* output_len) 
         *output_len = 0;
         return NULL;
     }
-    
+
     // Handle case of single unique character or empty effective input after frequency calculation
     if (min_heap->size == 0) { // No characters with frequency > 0
         handle_error("Input has no characters with positive frequency for Huffman compression.");
@@ -446,8 +446,8 @@ char* huffman_decompress(const char* input, size_t input_len, size_t* output_len
     if (input_len < (256 * sizeof(unsigned) + sizeof(size_t))) {
         handle_error("Input data too short for Huffman header.");
         *output_len = 0;
-        return NULL;
-    }
+                return NULL;
+            }
     unsigned frequencies[256];
     const char* ptr = input;
     memcpy(frequencies, ptr, 256 * sizeof(unsigned));
@@ -475,7 +475,7 @@ char* huffman_decompress(const char* input, size_t input_len, size_t* output_len
             if (!decompressed_output) { handle_memory_error(); return NULL; }
             decompressed_output[0] = '\0';
             return decompressed_output;
-        } else {
+            } else {
             // Frequencies are all zero but original_data_len > 0. This is an inconsistent state.
             handle_error("Inconsistent Huffman header: no frequencies but original data length > 0.");
             *output_len = 0;
@@ -581,4 +581,4 @@ char* huffman_decompress(const char* input, size_t input_len, size_t* output_len
 
     return decompressed_output;
 }
-/* RLE functions removed as Huffman coding is now implemented. */ 
+/* Compression functions using Huffman coding */ 

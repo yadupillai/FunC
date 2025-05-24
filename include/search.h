@@ -6,7 +6,7 @@
 #include <string.h>
 
 // Search result structure
-typedef struct {
+typedef struct SearchResult {
     int line_number;
     char* line;
     struct SearchResult* next;

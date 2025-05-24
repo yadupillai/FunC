@@ -13,11 +13,7 @@ int write_file(const char* filename, const char* data, size_t data_size);
 void handle_error(const char* message);
 void handle_memory_error(void);
 
-// Debug logging
-#ifdef DEBUG
-#define DEBUG_LOG(fmt, ...) fprintf(stderr, "[DEBUG] %s:%d: " fmt "\n", __FILE__, __LINE__, ##__VA_ARGS__)
-#else
-#define DEBUG_LOG(fmt, ...)
-#endif
+// String utilities
+char* my_strdup(const char* s);
 
 #endif // IO_H 
